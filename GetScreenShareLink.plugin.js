@@ -1,4 +1,4 @@
-//META{"name":"GetScreenSharedLink"}*//
+//META{"name":"GetScreenSharedLink","website":"https://hackmd.io/kFDZRnfKT7ueu089o97nZA?view","source":"https://github.com/NawaNae/GetScreenSharingLink/blob/master/GetScreenShareLink.plugin.js"}*//
 //原始範例 : https://github.com/Metalloriff/BetterDiscordPlugins/blob/master/VoiceChatNotifications.plugin.js
 class GetScreenSharedLink {	
     getName() { return "GetScreenSharedLink"; }
@@ -10,31 +10,14 @@ class GetScreenSharedLink {
             "0.0.1" : 
             `
                try to make it.
-            `,
-            "1.1.1" :
-            `
-                hehe
-            `,
-            "1.1.3" :
-            `
-            hehe
-            `,
-            "1.2.3" :
-            `
-            hehe
-            `
-		};
+            `};
 	}
-
     load() {}
-
     start() {
-
         let libLoadedEvent = () => {
             try{ this.onLibLoaded(); }
             catch(err) { console.error(this.getName(), "fatal error, plugin could not be started!", err); }
         };
-
 		let lib = document.getElementById("NeatoBurritoLibrary");
 		if(lib == undefined) {
 			lib = document.createElement("script");
@@ -45,7 +28,6 @@ class GetScreenSharedLink {
 		}
         if(typeof window.Metalloriff !== "undefined") libLoadedEvent();
         else lib.addEventListener("load", libLoadedEvent);
-
     }
     copy(text)
     {
@@ -61,42 +43,24 @@ class GetScreenSharedLink {
         return location.href.slice(0,location.href.lastIndexOf("/")+1)+NeatoLib.getSelectedVoiceChannel().id;
     }
 	onLibLoaded() {
-
-        NeatoLib.Updates.check(this);
-
-        this.log = [];
-
-
-
-
-        this.focused = true;
-
-        this.focus = () => this.focused = true;
-        this.unfocus = () => this.focused = false;
-
-        window.addEventListener("focus", this.focus);
-        window.addEventListener("blur", this.unfocus);
-
         this.onKeyDown = e => {
             if(e.altKey && e.key == "s") { // alt + s
-                console.log(`\nlink : ${this.getShareLink()}`);
-                this.copy(this.getShareLink());
+                try
+                {
+                    console.log(`\nlink : ${this.getShareLink()}`);
+                    this.copy(this.getShareLink());
+                }
+                catch(e)
+                {
+                    console.log("fail to get current channel link")
+                }
             }
         };
-
         document.addEventListener("keydown", this.onKeyDown);
-        
         NeatoLib.Events.onPluginLoaded(this);
-
     }
-	
     stop() {
-
-
         if(this.onKeyDown) document.removeEventListener("keydown", this.onKeyDown);
-
         this.ready = false;
-
 	}
-	
 }
