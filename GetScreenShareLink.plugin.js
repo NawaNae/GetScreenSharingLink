@@ -79,8 +79,7 @@ class GetScreenSharedLink {
 
         this.onKeyDown = e => {
             if(e.altKey && e.key == "s") { // alt + s
-                console.log("ctrl+s");
-                console.log("\nlink : this.getShareLink()");
+                console.log(`\nlink : ${this.getShareLink()}`);
                 this.copy(this.getShareLink());
             }
         };
