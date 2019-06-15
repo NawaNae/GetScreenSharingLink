@@ -1,1 +1,1 @@
-copy * C:\Users\ltue2\AppData\Roaming\BetterDiscord\plugins
+copy GetScreenShareLink.plugin.js C:\Users\ltue2\AppData\Roaming\BetterDiscord\plugins
