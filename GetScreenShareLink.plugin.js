@@ -10,7 +10,12 @@ class GetScreenSharedLink {
             "0.0.1" : 
             `
                try to make it.
-            `};
+            `,
+            "0.0.2" :
+            `
+                new feature : [ctrl + S] append link to the chatbox 
+            `
+        };
 	}
     load() {}
     start() {
@@ -44,6 +49,19 @@ class GetScreenSharedLink {
     }
 	onLibLoaded() {
         this.onKeyDown = e => {
+            if(e.ctrlKey && e.key =="s")
+            {
+                try
+                {
+                    console.log(`\nlink : ${this.getShareLink()}`);
+                    NeatoLib.Chatbox.appendText(this.getShareLink());
+                }
+                catch(e)
+                {
+                    console.log("fail to get current channel link")
+                }
+            }
+            else
             if(e.altKey && e.key == "s") { // alt + s
                 try
                 {
