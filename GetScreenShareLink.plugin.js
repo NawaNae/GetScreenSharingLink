@@ -3,7 +3,7 @@
 class GetScreenSharedLink {	
     getName() { return "GetScreenSharedLink"; }
     getDescription() { return "Let you have ability to get screen sharing link of current voice channel by press some shortcut keys (alt + S)"; }
-    getVersion() { return "0.0.1"; }
+    getVersion() { return "0.0.3"; }
 	getAuthor() { return "NawaNawa"; }
 	getChanges() {
 		return {
@@ -14,6 +14,10 @@ class GetScreenSharedLink {
             "0.0.2" :
             `
                 new feature : [ctrl + S] append link to the chatbox 
+            `,
+            "0.0.3" :
+            `
+                let shortcut key [s] can be uppercase
             `
         };
 	}
@@ -49,7 +53,7 @@ class GetScreenSharedLink {
     }
 	onLibLoaded() {
         this.onKeyDown = e => {
-            if(e.ctrlKey && e.key =="s")
+            if(e.ctrlKey && e.key.toLowerCase() =="s")
             {
                 try
                 {
@@ -62,7 +66,7 @@ class GetScreenSharedLink {
                 }
             }
             else
-            if(e.altKey && e.key == "s") { // alt + s
+            if(e.altKey && e.key.toLowerCase() == "s") { // alt + s
                 try
                 {
                     console.log(`\nlink : ${this.getShareLink()}`);
